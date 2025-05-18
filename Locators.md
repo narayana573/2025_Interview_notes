@@ -119,3 +119,116 @@ Filter a node set based on a condition inside square brackets.
 * **Robustness:** Discuss strategies for writing stable XPaths (avoiding auto-generated paths, using multiple attributes, navigating relative to stable elements).
 * **Browser Dev Tools:** Mention using browser tools to build and test XPaths (`$x("your xpath")` in console).
 ```
+
+
+
+# XPath Cheat Sheet for Test Automation
+
+A comprehensive list of XPath expressions and patterns used to locate web elements in automation (Selenium, Cucumber, etc).
+
+---
+
+## 🔹 1. By Tag Name
+```xpath
+//div
+//input
+//a
+```
+
+---
+
+## 🔹 2. By Attribute
+```xpath
+//input[@id='username']
+//button[@class='btn-primary']
+//a[@href='/login']
+```
+
+---
+
+## 🔹 3. By Text
+```xpath
+//label[text()='Email']
+//a[contains(text(), 'Login')]
+//span[normalize-space(text())='Submit']
+```
+
+---
+
+## 🔹 4. By Partial Attribute Match
+```xpath
+//input[contains(@id, 'user')]
+//button[starts-with(@name, 'log')]
+//input[ends-with(@name, 'field')]   <!-- XPath 2.0 only -->
+```
+
+---
+
+## 🔹 5. Using normalize-space()
+```xpath
+//div[normalize-space(text())='First Name']
+```
+
+---
+
+## 🔹 6. Logical Conditions
+```xpath
+//input[@type='text' and @name='username']
+//button[@id='submit' or @name='submit']
+```
+
+---
+
+## 🔹 7. By Index
+```xpath
+(//a[text()='Sign in'])[2]
+(//input[@type='text'])[last()]
+```
+
+---
+
+## 🔹 8. Parent/Child Relationships
+```xpath
+//div/label                ← direct child
+//div//input               ← any-level descendant
+```
+
+---
+
+## 🔹 9. Sibling Relationships
+```xpath
+//label[text()='Username']/following-sibling::input
+//input[@id='email']/preceding-sibling::label
+```
+
+---
+
+## 🔹 10. Ancestor or Parent Access
+```xpath
+//input[@id='email']/ancestor::form
+//span[@class='icon']/parent::button
+```
+
+---
+
+## 🔹 11. XPath Axes Examples
+
+| Axis              | Example |
+|-------------------|---------|
+| `ancestor`        | `//input[@id='username']/ancestor::div` |
+| `descendant`      | `//div[@id='form']/descendant::input` |
+| `parent`          | `//span[@class='icon']/parent::button` |
+| `following-sibling` | `//label[text()='Email']/following-sibling::input` |
+| `preceding-sibling` | `//input[@id='email']/preceding-sibling::label` |
+
+---
+
+## 🔹 Example: Input for "First Name" Label
+```xpath
+//label[normalize-space(text())='First Name']/following-sibling::input
+```
+
+---
+
+✅ *Tip: Use `contains()` or `normalize-space()` to make your XPath more robust against layout or whitespace changes.*
+
